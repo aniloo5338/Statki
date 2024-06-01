@@ -28,7 +28,9 @@ bool zakres(T zmienna, T min, T max) {
 void Plansza::wypisz_plansze_ok() {
 	cout << "     A B C D E F G H I J  " << endl;
 	cout << "     ";
-	for (int k = 0; k < 10; ++k) { cout << "_ "; }
+	for (int k = 0; k < 10; ++k) 
+		cout << "_ ";
+	
 	cout << "\n";
 	for (int i = 1; i < 11; ++i) {
 		cout.width(2);
