@@ -25,9 +25,8 @@ void Komputer::losuj_statki() {
 			int orient_w = rand() % 2;
 			char x_w = (char)((rand() % 10) + 65);
 			int y_w = (rand() % 10) + 1;
-			if (!wypelnij_statkiem(i + 1, orient_w, x_w, y_w)) {
-				--j;
-			}
+			if (!wypelnij_statkiem(i + 1, orient_w, x_w, y_w)) --j;
+			
 			system("cls");
 		}
 	}
