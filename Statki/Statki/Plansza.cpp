@@ -22,10 +22,7 @@ Plansza::Plansza() : licznik_zat_pol(19) {
 
 template <typename T>
 bool zakres(T zmienna, T min, T max) {
-	if (zmienna<min || zmienna>max) {
-		return true;
-	}
-	return false;
+	return (zmienna<min || zmienna>max);
 }
 
 void Plansza::wypisz_plansze_ok() {
@@ -189,7 +186,7 @@ bool Plansza::strzel(char x, int y, int& wsk) {
 		return false;
 	}
 	else {
-		// aktualizacja tablicy do strzelania (3 - ".", "pud³o")
+		// aktualizacja tablicy do strzelania (3 - ".", "pudÂ³o")
 		tab_do_strzelania[y][pom + 1] = 3;
 		cout << "Pudlo!";
 		Sleep(1500);
@@ -217,7 +214,7 @@ bool Plansza::strzel_w_gracza(char x, int y, int& wsk) {
 		return false;
 	}
 	else {
-		// aktualizacja tablicy do strzelania (3 - "*", "pud³o")
+		// aktualizacja tablicy do strzelania (3 - "*", "pudÂ³o")
 		tab[y][pom + 1] = 3;
 		cout << "Pudlo!";
 		Sleep(1500);
