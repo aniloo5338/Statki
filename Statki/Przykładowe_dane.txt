@@ -1,0 +1,4 @@
+Nazwa użytkownika: "anonim"
+wybór sprawdzenia ostatnich zwycięzców: 2
+Ustawienie statków na planszy: indeksy z zakresu A-J oraz 1-10
+Oddawanie strzałów na planszy: indeksy z zakresu A-J oraz 1-10
