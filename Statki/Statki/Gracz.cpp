@@ -24,5 +24,4 @@ bool Gracz::strzel_komp() {
 	char los_litera = (char)((rand() % 10) + 65); // komputer losuje wspolrzedna literowa
 	int los_liczba = (rand() % 10) + 1; // komputer losuje wspolrzedna liczbowa
 	return Plansza::strzel_w_gracza(los_litera, los_liczba, licznik_zat_pol);
-
 }
