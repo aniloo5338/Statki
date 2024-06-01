@@ -15,9 +15,10 @@ bool zakres(T zmienna, T min, T max) {
 	return false;
 }
 
+/// <summary>
+/// komputer losuje ustawienie 10 statkow
+/// </summary>
 void Komputer::losuj_statki() {
-// komputer losuje ustawienie 10 statkow
-// petla zwieksza liczbe ustawianych statkow i zmniejsza iczbe ich masztow
 	int liczba_statkow = 1;
 	for (int i = 3; i >= 0; --i) {
 		for (int j = i; j < 4; ++j) {
@@ -27,7 +28,6 @@ void Komputer::losuj_statki() {
 			if (!wypelnij_statkiem(i + 1, orient_w, x_w, y_w)) {
 				--j;
 			}
-			// wyczysc ekran
 			system("cls");
 		}
 	}
@@ -91,6 +91,4 @@ void Komputer::wykonaj_ruch_wypis() {
 		system("cls");
 		Komputer::wypisz_plansze_strzel();
 	} while (czy_trafiony);
-	
 }
-
