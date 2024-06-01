@@ -12,9 +12,6 @@ public:
 	Gracz();
 	void wypisz_plansze();
 	bool strzel_komp();
-	// deklaracje get'erow
 	string get_nick() { return nick; }
 	string wpisz_nick();
-
 };
-
