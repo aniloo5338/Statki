@@ -4,17 +4,18 @@
 #include <string>
 #include <Windows.h>
 #include "Plansza.h"
+#include "config.h"
 
 using namespace std;
 
 Plansza::Plansza() : licznik_zat_pol(19) {
-	for (int i = 0; i < 12; ++i) {
-		for (int j = 0; j < 12; ++j) {
+	for (int i = 0; i < ROZMIAR_PLANSZY + 2; ++i) {
+		for (int j = 0; j < ROZMIAR_PLANSZY + 2; ++j) {
 			tab[i][j] = 0;
 		}
 	}
-	for (int i = 0; i < 12; ++i) {
-		for (int j = 0; j < 12; ++j) {
+	for (int i = 0; i < ROZMIAR_PLANSZY + 2; ++i) {
+		for (int j = 0; j < ROZMIAR_PLANSZY + 2; ++j) {
 			tab_do_strzelania[i][j] = 0;
 		}
 	}
@@ -28,14 +29,14 @@ bool zakres(T zmienna, T min, T max) {
 void Plansza::wypisz_plansze_ok() {
 	cout << "     A B C D E F G H I J  " << endl;
 	cout << "     ";
-	for (int k = 0; k < 10; ++k) 
+	for (int k = 0; k < ROZMIAR_PLANSZY; ++k) 
 		cout << "_ ";
 	
 	cout << "\n";
-	for (int i = 1; i < 11; ++i) {
+	for (int i = 1; i < ROZMIAR_PLANSZY + 1; ++i) {
 		cout.width(2);
 		cout << i << "  ";
-		for (int j = 1; j < 11; ++j) {
+		for (int j = 1; j < ROZMIAR_PLANSZY + 1; ++j) {
 			cout << "|";
 			switch (tab[i][j]) {
 			case 0:
@@ -62,33 +63,33 @@ void Plansza::wypisz_plansze_ok() {
 // metoda zwraca false, gdy nie uda sie poprawnie rozstawic statkow
 bool Plansza::wypelnij_statkiem(int dl, int orient, char x, int y) {
 	// sprawdzenie zakresu tablicy: czy poczatek statku nie wychodzi poza kwadrat A1, A10, J10, J1
-	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > 10 || y < 1 || y > 10) { return false; }
+	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > ROZMIAR_PLANSZY || y < 1 || y > ROZMIAR_PLANSZY) { return false; }
 	if (orient == 0) { // statek poziomy
 		// sprawdzenie zakresu tablicy (dl. statku + wspolrzedna literowa)
-		if (dl + (int)(x - 'A') > 10 || !czy_puste_poz(dl, x, y)) { return false; }
+		if (dl + (int)(x - 'A') > ROZMIAR_PLANSZY || !czy_puste_poz(dl, x, y)) { return false; }
 		// uzupelnij dana komorke w tablicy liczba 1 (1 - "X", statek postawiony)
 		for (int i = 0; i < dl; ++i) { // statek dlugosci dl
 			int pom = (int)(x - 'A') + i;
 			tab[y][pom + 1] = 1;
-			tab[y - 1][pom + 1] = tab[y + 1][pom + 1] = 9;
+			tab[y - 1][pom + 1] = tab[y + 1][pom + 1] = ROZMIAR_PLANSZY - 1;
 		}
 		// uzupelnij 3 kratki wzdluz lewej krawedzi liczba 9 (9 - "_", puste pole, nie moga tu stanac inne statki)
-		tab[y - 1][(int)(x - 'A')] = tab[y][(int)(x - 'A')] = tab[y + 1][(int)(x - 'A')] = 9;
+		tab[y - 1][(int)(x - 'A')] = tab[y][(int)(x - 'A')] = tab[y + 1][(int)(x - 'A')] = ROZMIAR_PLANSZY - 1;
 		// uzupelnij 3 kratki wzdluz prawej krawedzi liczba 9 (9 - "_", puste pole, nie moga tu stanac inne statki)
-		tab[y - 1][(int)(x - 'A') + dl + 1] = tab[y][(int)(x - 'A') + dl +1] = tab[y + 1][(int)(x - 'A') + dl+1] = 9;
+		tab[y - 1][(int)(x - 'A') + dl + 1] = tab[y][(int)(x - 'A') + dl +1] = tab[y + 1][(int)(x - 'A') + dl+1] = ROZMIAR_PLANSZY - 1;
 		return true;
 	}
 	else if (orient == 1) { // statek pionowy
 		// sprawdzenie zakresu tablicy (dl. statku + wspolrzedna liczbowa)
-		if (dl + y - 1 > 10 || !czy_puste_pion(dl, x, y)) { return false; }
+		if (dl + y - 1 > ROZMIAR_PLANSZY || !czy_puste_pion(dl, x, y)) { return false; }
 		// uzupelnij dana komorke w tablicy liczba 1 (1 - "X", statek postawiony)
 		for (int i = 0; i < dl; ++i) { // statek dlugosci dl
 			int pom = (int)(x - 'A');
 			tab[y + i][pom + 1] = 1;
-			tab[y + i][pom] = tab[y + i][pom + 2] = 9;
+			tab[y + i][pom] = tab[y + i][pom + 2] = ROZMIAR_PLANSZY - 1;
 		}
-		tab[y - 1][(int)(x - 'A')] = tab[y - 1][(int)(x - 'A') + 1] = tab[y - 1][(int)(x - 'A') + 2] = 9;
-		tab[y + dl][(int)(x - 'A')] = tab[y + dl][(int)(x - 'A') + 1] = tab[y + dl][(int)(x - 'A') + 2] = 9;
+		tab[y - 1][(int)(x - 'A')] = tab[y - 1][(int)(x - 'A') + 1] = tab[y - 1][(int)(x - 'A') + 2] = ROZMIAR_PLANSZY - 1;
+		tab[y + dl][(int)(x - 'A')] = tab[y + dl][(int)(x - 'A') + 1] = tab[y + dl][(int)(x - 'A') + 2] = ROZMIAR_PLANSZY -1;
 		return true;
 	}
 	else return false;
@@ -138,7 +139,7 @@ bool Plansza::czy_puste_poz(int dl, char x, int y) {
 	// statek poziomy
 	for (int i = 0; i < dl; ++i) {
 		int pom = (int)(x - 'A') + i;
-		if (tab[y][pom + 1] == 1 || tab[y][pom + 1] == 9) {
+		if (tab[y][pom + 1] == 1 || tab[y][pom + 1] == (ROZMIAR_PLANSZY - 1)) {
 			return false;
 		}
 	}
@@ -150,7 +151,7 @@ bool Plansza::czy_puste_pion(int dl, char x, int y) {
 	// statek pionowy
 	for (int i = 0; i < dl; ++i) {
 		int pom = (int)(x - 'A');
-		if (tab[y + i][pom + 1] == 1 || tab[y + i][pom + 1] == 9) {
+		if (tab[y + i][pom + 1] == 1 || tab[y + i][pom + 1] == (ROZMIAR_PLANSZY - 1)) {
 			return false;
 		}
 	}
@@ -160,7 +161,7 @@ bool Plansza::czy_puste_pion(int dl, char x, int y) {
 // strzel w te plansze. uwaga: gracz strzela na planszy p_komp
 bool Plansza::strzel(char x, int y, int& wsk) {
 	int pom = (int)(x - 'A');
-	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > 10 || y < 1 || y > 10) {
+	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > ROZMIAR_PLANSZY || y < 1 || y > ROZMIAR_PLANSZY) {
 		cout << "Bledne dane.";
 		return false;
 	}
@@ -198,7 +199,7 @@ bool Plansza::strzel(char x, int y, int& wsk) {
 
 bool Plansza::strzel_w_gracza(char x, int y, int& wsk) {
 	int pom = (int)(x - 'A');
-	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > 10 || y < 1 || y > 10) {
+	if ((int)(x - 'A') + 1 < 1 || (int)(x - 'A') + 1 > ROZMIAR_PLANSZY || y < 1 || y > ROZMIAR_PLANSZY) {
 		cout << "Bledne dane.";
 		return false;
 	}
