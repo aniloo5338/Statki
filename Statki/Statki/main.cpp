@@ -33,7 +33,7 @@ void ruch_kompa(Gracz &plansza_gracz, Komputer &plansza_komp) {
 	Sleep(1500);
 }
 
-bool ruch_gracza(Gracz &plansza_gracz, Komputer& plansza_komp) {
+bool ruch_gracza(Gracz &plansza_gracz, Komputer &plansza_komp) {
 	cout << "\nTwoj ruch.";
 	while (plansza_komp.wykonaj_ruch()) {
 		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
