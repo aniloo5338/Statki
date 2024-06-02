@@ -9,21 +9,21 @@
 
 using namespace std;
 
-void wypisz_dwie_plansze(Gracz p_g, Komputer p_k) {
+void wypisz_dwie_plansze(Gracz plansza_gracz, Komputer plansza_komp) {
 	system("cls");
-	p_g.wypisz_plansze();
-	p_k.wypisz_plansze();
+	plansza_gracz.wypisz_plansze();
+	plansza_komp.wypisz_plansze();
 }
 
-void ruch_kompa(Gracz &p_g, Komputer &p_k) {
+void ruch_kompa(Gracz &plansza_gracz, Komputer &plansza_komp) {
 	cout << "\nTeraz ruch wykonuje komputer." << endl;
-	while (p_g.strzel_komp()) {
-		wypisz_dwie_plansze(p_g, p_k);
-		if (p_k.get_licznik() == 20) {
+	while (plansza_gracz.strzel_komp()) {
+		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
+		if (plansza_komp.get_licznik() == 20) {
 			cout << "\nWygrywasz!";
 			exit(0);
 		}
-		else if (p_g.get_licznik() == 20) {
+		else if (plansza_gracz.get_licznik() == 20) {
 			cout << "\nWygrywa komputer.";
 			exit(0);
 		}
@@ -33,16 +33,16 @@ void ruch_kompa(Gracz &p_g, Komputer &p_k) {
 	Sleep(1500);
 }
 
-bool ruch_gracza(Gracz &p_g, Komputer& p_k) {
+bool ruch_gracza(Gracz &plansza_gracz, Komputer& plansza_komp) {
 	cout << "\nTwoj ruch.";
-	while (p_k.wykonaj_ruch()) {
-		wypisz_dwie_plansze(p_g, p_k);
+	while (plansza_komp.wykonaj_ruch()) {
+		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
 		Sleep(500);
-		if (p_k.get_licznik() == 20) {
+		if (plansza_komp.get_licznik() == 20) {
 			cout << "\nWygrywasz!";
 			return false;
 		}
-		else if (p_g.get_licznik() == 20) {
+		else if (plansza_gracz.get_licznik() == 20) {
 			cout << "\nWygrywa komputer.";
 			return false ;
 		}
@@ -82,32 +82,32 @@ int main() {
 			system("pause");
 		}
 	}
-	Gracz p_gracz;
-	p_gracz.wypisz_plansze();
+	Gracz plansza_gracz;
+	plansza_gracz.wypisz_plansze();
 	// ustaw statki
 	cout << "\nUstaw swoje statki na planszy." << endl;
 	cout << "Do ustawienia sa: 1 czteromasztowiec, 2 trzymasztowce, 3 dwumasztowce, 4 jednomasztowce" << endl;
-	p_gracz.ustaw_statki();
-	Komputer p_komp;
-	p_komp.losuj_statki();
-	p_gracz.wypisz_plansze();
-	p_komp.wypisz_plansze();
+	plansza_gracz.ustaw_statki();
+	Komputer plansza_komp;
+	plansza_komp.losuj_statki();
+	plansza_gracz.wypisz_plansze();
+	plansza_komp.wypisz_plansze();
 
-	while (p_gracz.get_licznik() != 20 || p_komp.get_licznik() != 20) {
+	while (plansza_gracz.get_licznik() != 20 || plansza_komp.get_licznik() != 20) {
 		// wypisanie dwoch plansz
-		wypisz_dwie_plansze(p_gracz, p_komp);
+		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
 		// gracz strzela w plansze komputera
-		if (!ruch_gracza(p_gracz, p_komp)) break;
+		if (!ruch_gracza(plansza_gracz, plansza_komp)) break;
 		// koniec ruchu gracza
-		wypisz_dwie_plansze(p_gracz, p_komp);
+		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
 		// komputer strzela w plansze gracza (losowo)
-		ruch_kompa(p_gracz, p_komp);
+		ruch_kompa(plansza_gracz, plansza_komp);
 		// koniec ruchu komputera
-		wypisz_dwie_plansze(p_gracz, p_komp);
+		wypisz_dwie_plansze(plansza_gracz, plansza_komp);
 	}
 	// sprawdzenie, czy ktoras ze stron juz wygrala
-	if (p_komp.get_licznik() == 20 ) plik << "Rozgrywke wygral gracz " << gracz.get_nick() << ".\n";
-	else if (p_gracz.get_licznik() == 20) plik << "Rozgrywke z graczem " << gracz.get_nick() << " wygral komputer.\n";
+	if (plansza_komp.get_licznik() == 20 ) plik << "Rozgrywke wygral gracz " << gracz.get_nick() << ".\n";
+	else if (plansza_gracz.get_licznik() == 20) plik << "Rozgrywke z graczem " << gracz.get_nick() << " wygral komputer.\n";
 	plik.close();
 	return 0;
 }
