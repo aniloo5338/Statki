@@ -1,0 +1,7 @@
+﻿  Komputer.cpp
+C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Statki\Komputer.h(3,10): warning C4067: nieoczekiwane tokeny występujące po dyrektywie preprocesora - oczekiwano nowego wiersza
+C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Statki\Komputer.cpp(75,18): warning C4473: „scanf_s”: przekazano niewystarczającą liczbę argumentów dla ciągu formatowania
+C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Statki\Komputer.cpp(75,18): message : symbole zastępcze i ich parametry oczekują 2 argumentów ze zmienną liczbą argumentów, ale podano następującą liczbę zmiennych argumentów: 1
+C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Statki\Komputer.cpp(75,18): message : brakujący argument 2 o zmiennej liczbie parametrów jest wymagany w ciągu formatu „%c”
+C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Statki\Komputer.cpp(75,18): message : ten argument jest używany jako rozmiar bufora
+  Statki.vcxproj -> C:\Users\Karolina\Desktop\AEH_ZJO\Statki\Debug\Statki.exe

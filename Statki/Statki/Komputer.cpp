@@ -70,6 +70,16 @@ void Komputer::wypisz_plansze_strzel() {
 	}
 }
 
+bool czyBlednaLitera(char& wczyt_litera){
+	//char wczyt_litera;
+	return (scanf_s("%c", &wczyt_litera) != 1 || zakres(wczyt_litera, 'A', 'J') || getchar() != '\n');
+}
+
+bool czyBlednaLiczba(int& wczyt_liczba) {
+	//int wczyt_liczba;
+	return (scanf_s("%d", &wczyt_liczba) != 1 || zakres(wczyt_liczba, 1, 10) || getchar() != '\n');
+}
+
 // wykonaj ruch z wypisem planszy
 void Komputer::wykonaj_ruch_wypis() {
 	char wczyt_litera;
@@ -77,11 +87,11 @@ void Komputer::wykonaj_ruch_wypis() {
 	bool czy_trafiony = true;
 	do {
 		cout << "\nPodaj dwie wspolrzedne, po kazdej enter (A-J, 1-10)" << endl;
-		while (scanf_s("%c", &wczyt_litera) != 1 || zakres(wczyt_litera, 'A', 'J') || getchar() != '\n') {
+		while (czyBlednaLitera(wczyt_litera)) {
 			cout << "Bledne dane. Podaj jeszcze raz: ";
 			while (getchar() != '\n');
 		}
-		while (scanf_s("%d", &wczyt_liczba) != 1 || zakres(wczyt_liczba, 1, 10) || getchar() != '\n') {
+		while (czyBlednaLiczba(wczyt_liczba)) {
 			cout << "Bledne dane. Podaj jeszcze raz: ";
 			while (getchar() != '\n');
 		}
