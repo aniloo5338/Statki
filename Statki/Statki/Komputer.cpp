@@ -71,12 +71,10 @@ void Komputer::wypisz_plansze_strzel() {
 }
 
 bool czyBlednaLitera(char& wczyt_litera){
-	//char wczyt_litera;
 	return (scanf_s("%c", &wczyt_litera) != 1 || zakres(wczyt_litera, 'A', 'J') || getchar() != '\n');
 }
 
 bool czyBlednaLiczba(int& wczyt_liczba) {
-	//int wczyt_liczba;
 	return (scanf_s("%d", &wczyt_liczba) != 1 || zakres(wczyt_liczba, 1, 10) || getchar() != '\n');
 }
 
